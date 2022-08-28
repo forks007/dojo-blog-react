@@ -1,23 +1,35 @@
-
-
+import { BrowserRouter as Router , Route , Switch } from 'react-router-dom';
 import Navbar from './Navbar';
 import Home from './Home';
+import Create from './Create';
+import BlogDetails from './BlogDetails';
+import NotFound from './NotFound';
 
 function App() {
-  // const title = "welcome to the new blog"
-  // const likes = "50"
-  //  const person = {name:'yoshi', age:'50', id:'1'}
-  // const links = "http://www.google.com";
-
-
+ 
 
   return (
-    <div className="App">
+    <Router>
+      <div className="App">
       <Navbar/>
-      <div className="content">
-        <Home/>
+        <div className="content">
+          <Switch>
+            <Route exact path='/'>
+              <Home />
+            </Route>
+            <Route path='/Create'>
+              <Create />
+            </Route>
+            <Route path='/blogs/:id'>
+              <BlogDetails />
+            </Route>
+            <Route path={'*'}>
+              <NotFound/>
+            </Route>
+          </Switch>
+        </div>
       </div>
-    </div>
+    </Router>
   );
 }
 
